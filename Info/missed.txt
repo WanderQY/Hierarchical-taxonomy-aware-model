@@ -1,0 +1,4 @@
+E:/Work/pythonProject/birdsounds/dataset/BirdCLEF2017/BirdCLEF2017TrainingSetPart2/data/LIFECLEF2017_BIRD_XC_WAV_RN35032.xml
+E:/Work/pythonProject/birdsounds/dataset/BirdCLEF2017/BirdCLEF2017TrainingSetPart2/data/LIFECLEF2017_BIRD_XC_WAV_RN37675.xml
+E:/Work/pythonProject/birdsounds/dataset/BirdCLEF2017/BirdCLEF2017TrainingSetPart2/data/LIFECLEF2017_BIRD_XC_WAV_RN38558.xml
+E:/Work/pythonProject/birdsounds/dataset/BirdCLEF2017/BirdCLEF2017TrainingSetPart2/data/LIFECLEF2017_BIRD_XC_WAV_RN44494.xml
