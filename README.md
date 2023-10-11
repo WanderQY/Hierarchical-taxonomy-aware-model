@@ -3,7 +3,7 @@ Hierarchical-taxonomy-aware and attentional convolutional neural networks for bi
 
 # Get Started
 1. Install Python 3.6, PyTorch 1.9.0.
-2. Download data. You can obtain all the trained models from Google Drive. All the datasets are well pre-processed and can be used easily.
+2. Download data. You can obtain all the trained models and subset of acoustic recordings from Google Drive and can be accessed via https://drive.google.com/drive/folders/1rORMGIrZKOCLPsvSj0vsGs2Iu5A4QnJE?usp=sharing. All the datasets are well pre-processed and can be used easily.
 3. Train the model. We provide the experiment scripts of all benchmarks under the folder ./scripts. You can reproduce the experiment results by:
 
 # Contact
