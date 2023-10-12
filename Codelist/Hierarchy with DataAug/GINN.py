@@ -57,7 +57,7 @@ class Block(nn.Module):
         self.rep = nn.Sequential(*rep)
 
         if use_attention:
-            self.ca = SelfAttention(out_filters)
+            self.ca = PositionAttention(out_filters)
         self.use_attention = use_attention
 
     def forward(self, inp):
@@ -140,7 +140,7 @@ class AttentionDohfNeck2(nn.Module):
         feature_matrix = self.bilinear_attention_pooling(x, attention_maps)
         return feature_matrix, attention_maps  # (B, M * C), (B, M, AH, AW)
 
-    # 正交分解
+    # CHOF
     def dohf(self, shallow_hiera, deep_hiera):
         """
         from shallow to deep: order, family, genus, class
@@ -184,14 +184,14 @@ class ClassifyHead(nn.Sequential):
 
 
 ################# hierarchy architecture ####################
-class CHRF(nn.Module):
+class GINN(nn.Module):
     def __init__(self, hierarchy, use_attention=True):   # 128x938x1
         """ Constructor
         Args:
             hierarchy: {'class':100, 'family':47, 'order':18}
             use_attention: if use attentions?
         """
-        super(CHRF, self).__init__()
+        super(GINN, self).__init__()
         self.hierarchy = hierarchy
         self.hier_names = list(hierarchy.keys())
         self.hierarchical_depth = len(hierarchy)
@@ -309,14 +309,14 @@ class CHRF(nn.Module):
         #return multih_fmap, multih_fmatrixs, multih_scores, multih_att, multih_atts
 
 ################# hierarchy architecture w/o HA ####################
-class CHRF_woHA(nn.Module):
+class GINN_woHA(nn.Module):
     def __init__(self, hierarchy, use_attention=True):   # 128x938x1
         """ Constructor
         Args:
             hierarchy: {'class':100, 'family':47, 'order':18}
             use_attention: if use attentions?
         """
-        super(CHRF_woHA, self).__init__()
+        super(GINN_woHA, self).__init__()
         self.hierarchy = hierarchy
         self.hier_names = list(hierarchy.keys())
         self.hierarchical_depth = len(hierarchy)
@@ -329,17 +329,17 @@ class CHRF_woHA(nn.Module):
             nn.ReLU(inplace=True),
             nn.Conv2d(32, 64, 3, bias=False),  # 31x233x64
             nn.BatchNorm2d(64),
-            Block(64, 128, 2, 2, start_with_relu=False, grow_first=True, use_attention=self.use_attention),
-            Block(128, 256, 2, 2, start_with_relu=True, grow_first=True, use_attention=self.use_attention),
-            Block(256, 728, 2, 2, start_with_relu=True, grow_first=True, use_attention=self.use_attention),
-            Block(728, 728, 3, 1, start_with_relu=True, grow_first=True, use_attention=self.use_attention),
-            Block(728, 728, 3, 1, start_with_relu=True, grow_first=True, use_attention=self.use_attention),
-            Block(728, 728, 3, 1, start_with_relu=True, grow_first=True, use_attention=self.use_attention),
-            Block(728, 728, 3, 1, start_with_relu=True, grow_first=True, use_attention=self.use_attention),
-            Block(728, 728, 3, 1, start_with_relu=True, grow_first=True, use_attention=self.use_attention),
-            Block(728, 728, 3, 1, start_with_relu=True, grow_first=True, use_attention=self.use_attention),
-            Block(728, 728, 3, 1, start_with_relu=True, grow_first=True, use_attention=self.use_attention),
-            Block(728, 728, 3, 1, start_with_relu=True, grow_first=True, use_attention=self.use_attention),
+            Block(64, 128, 2, 2, start_with_relu=False, grow_first=True, use_attention=False),
+            Block(128, 256, 2, 2, start_with_relu=True, grow_first=True, use_attention=False),
+            Block(256, 728, 2, 2, start_with_relu=True, grow_first=True, use_attention=False),
+            Block(728, 728, 3, 1, start_with_relu=True, grow_first=True, use_attention=False),
+            Block(728, 728, 3, 1, start_with_relu=True, grow_first=True, use_attention=False),
+            Block(728, 728, 3, 1, start_with_relu=True, grow_first=True, use_attention=False),
+            Block(728, 728, 3, 1, start_with_relu=True, grow_first=True, use_attention=False),
+            Block(728, 728, 3, 1, start_with_relu=True, grow_first=True, use_attention=False),
+            Block(728, 728, 3, 1, start_with_relu=True, grow_first=True, use_attention=False),
+            Block(728, 728, 3, 1, start_with_relu=True, grow_first=True, use_attention=False),
+            Block(728, 728, 3, 1, start_with_relu=True, grow_first=True, use_attention=False),
             Block(728, 1024, 2, 2, start_with_relu=True, grow_first=False, use_attention=self.use_attention),
             )
 
@@ -415,12 +415,8 @@ class CHRF_woHA(nn.Module):
 
 
 if __name__ == '__main__':
-    model = CHRF(hierarchy={'class': 150, 'genus': 122, 'family': 42, 'order': 14}, use_attention=True)  # 50.36M
-    # model = CHRF(hierarchy={'class': 1500, 'genus': 589, 'family': 71, 'order': 24}, use_attention=True)  # 154.70M
-    #model = CHRF_woHA(hierarchy={'class': 150, 'genus': 122, 'family': 42, 'order': 14}, use_attention=True)  # 50.36M
-    # model = CHRF(hierarchy={'class': 1500, 'genus': 589, 'family': 71, 'order': 24}, use_attention=True)  # 154.70M
+    model = GINN(hierarchy={'class': 150, 'genus': 122, 'family': 42, 'order': 14}, use_attention=True)  # 50.36M
     para = model.parameters()
-    # 模型参数量
     total = sum([param.nelement() for param in model.parameters()])
     print("Number of parameter: %.2fM" % (total / 1e6))
     input = torch.randn(16, 3, 128, 431)
