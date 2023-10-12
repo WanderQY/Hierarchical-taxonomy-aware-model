@@ -48,7 +48,6 @@ def cut_mix(wave_data, candidate_list, p=0.5, sr=22050):
 
 class BirdsoundData(Dataset):
     """
-    鸟语识别任务的鸟类音频数据
     :param dataset: {文件名: {'ark_path': wave_data, 'label': class_name}}
     """
     def __init__(self, dataset, option='train', class_list=SELECT_CLASS, augment=[]):
