@@ -69,7 +69,7 @@ class BirdsoundData(Dataset):
                     self.p.append(0)
         if 'noise' in self.augment:
             lines = []
-            with open('E:/Work/BirdCLEF2017/Feature/noise_datas.scp', 'r') as T:
+            with open('../../BirdCLEF/Feature/noise_datas.scp', 'r') as T:
                 lines += T.readlines()
             path_dict = {}
             for line in lines:
