@@ -3,7 +3,7 @@ from torch import nn
 
 class PositonAttention(nn.Module):
     def __init__(self, in_channels):
-        super(SelfAttention, self).__init__()
+        super(PositonAttention, self).__init__()
         self.convB = nn.Conv2d(in_channels, in_channels, kernel_size=1, padding=0, bias=False)
         self.convC = nn.Conv2d(in_channels, in_channels, kernel_size=1, padding=0, bias=False)
         self.convD = nn.Conv2d(in_channels, in_channels, kernel_size=1, padding=0, bias=False)
