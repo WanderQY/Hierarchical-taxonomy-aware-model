@@ -1,6 +1,6 @@
 from sklearn.utils import shuffle
 import sys
-sys.path.append('E:/Work/BirdCLEF2017/')
+sys.path.append('../../BirdCLEF2017/')
 
 
 #### split dataset ####
