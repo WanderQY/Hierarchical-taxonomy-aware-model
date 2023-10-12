@@ -3,7 +3,7 @@ from utils import *
 import sys
 sys.path.append('E:/Work/BirdCLEF2017/')
 
-#################### 信噪分离 ####################
+#################### signal to noise ####################
 def preprocess_sound_file(filename, signal_dir, noise_dir):
     """ Preprocess sound file. Loads sound file from filename, downsampels,
     extracts signal/noise parts from sound file, splits the signal/noise parts
@@ -23,7 +23,6 @@ def preprocess_sound_file(filename, signal_dir, noise_dir):
 
     wave = wave.astype(float)
 
-    # 信噪分离
     signal_wave, noise_wave = preprocess_wave(wave)
 
     basename = get_basename_without_ext(filename)
@@ -57,8 +56,8 @@ from pydub import AudioSegment
 
 for d in filedir:
     key = d.split('/')[1]
-    #dataset[key] = {}
-    #birdsonly[key] = {}
+    dataset[key] = {}
+    birdsonly[key] = {}
     dir = sys.path[-1] + d
     class_list = os.listdir(dir)
     for c in class_list:
@@ -66,18 +65,18 @@ for d in filedir:
         wav_list = os.listdir(class_dir)
         for wav in wav_list:
             path = os.path.join(save_dir, wav)
-            #sound = AudioSegment.from_wav(path)
-            #sound = sound.set_channels(1).set_frame_rate(22050).set_sample_width(2)
+            sound = AudioSegment.from_wav(path)
+            sound = sound.set_channels(1).set_frame_rate(22050).set_sample_width(2)
             basename = get_basename_without_ext(path)
-            #save_path = os.path.join(save_dir, basename + ".wav")
-            #sound.export(save_path, format="wav")
-            #dataset[key][basename] = {}
-            #birdsonly[key][basename] = {}
-            #preprocess_sound_file(path, signal_dir, noise_dir)
-            #dataset[key][basename]['path'] = os.path.join(save_dir, basename + ".wav")
-            #dataset[key][basename]['label'] = c
-            #birdsonly[key][basename]['path'] = os.path.join(signal_dir, basename + ".wav")
-            #birdsonly[key][basename]['label'] = c
+            save_path = os.path.join(save_dir, basename + ".wav")
+            sound.export(save_path, format="wav")
+            dataset[key][basename] = {}
+            birdsonly[key][basename] = {}
+            preprocess_sound_file(path, signal_dir, noise_dir)
+            dataset[key][basename]['path'] = os.path.join(save_dir, basename + ".wav")
+            dataset[key][basename]['label'] = c
+            birdsonly[key][basename]['path'] = os.path.join(signal_dir, basename + ".wav")
+            birdsonly[key][basename]['label'] = c
 
 
 
