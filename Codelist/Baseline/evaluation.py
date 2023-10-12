@@ -177,7 +177,7 @@ def confusion_matrix(label_list, predict_list, species_list, save_cm=True, save_
 
 if __name__ == '__main__':
     import sys
-    sys.path.append('../../BirdCLEF2017/')
+    sys.path.append('../../BirdCLEF/')
     import json
     from torch.utils.data import DataLoader
     from model import Xception
