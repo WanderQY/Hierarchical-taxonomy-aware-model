@@ -35,7 +35,7 @@ HIERARY = {'ksifri': ['Accipitriformes ', 'Accipitridae', 'Accipiter'], 'luwulk'
 """
 import json
 import sys
-sys.path.append('E:/Work/BirdCLEF2017/')
+sys.path.append('../../BirdCLEF/')
 split_datas = json.load(open(sys.path[-1] + 'SplitDatas/small_dataset1.json'))
 for i in split_datas.keys():
     for d in split_datas[i].keys():
@@ -48,14 +48,14 @@ with open(sys.path[-1] + 'SplitDatas/small_dataset1_with_hier.json', 'w', encodi
 
 from openpyxl import load_workbook
 import sys
-sys.path.append('E:/Work/BirdCLEF2017/')
+sys.path.append('../../BirdCLEF/')
 def bird_info(select=None):
     """
-    读取鸟类标签信息
-    :param select: 读取特定鸟类信息, e.g. select = ['叽喳柳莺', '西黄鹡鸰']
-    :return: bird_list = {'文件名'：['文件数','音频时长']}
+    Read birds' labels
+    :param select: Read information about specific birds, e.g. select = ['Phylloscopus collybita', 'Motacilla flava']
+    :return: bird_list = {'filename'：['file num', 'audio time']}
     """
-    wb = load_workbook(sys.path[-1] + 'Info/BirdCLEF2017list.xlsx')
+    wb = load_workbook(sys.path[-1] + 'Info/BirdCLEFlist.xlsx')
     ws = wb.get_sheet_by_name('filenum_time')
     info = {}
     for row in ws['1:1500']:
