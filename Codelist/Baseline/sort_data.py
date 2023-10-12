@@ -4,7 +4,7 @@ from shutil import copyfile
 import traceback
 import xmltodict as x2d
 import sys
-sys.path.append('../../BirdCLEF2017/')
+sys.path.append('../../BirdCLEF/')
 
 # Specify all folders containing wav or xml files
 data_dirs = [sys.path[-1] + 'RawData/BirdCLEF2017TrainingSetPart1/TrainingSet/xml/',
