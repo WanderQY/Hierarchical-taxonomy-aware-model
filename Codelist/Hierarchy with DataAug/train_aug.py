@@ -26,7 +26,7 @@ import warnings
 warnings.filterwarnings("ignore")
 random.seed(1337)
 cudnn.benchmark = True
-sys.path.append('E:/Work/BirdCLEF2017/')
+sys.path.append('../../BirdCLEF/')
 
 class ModelTrainer:
     def __init__(self, model, train_loader, valid_loader, criterion, optimizer, scheduler, config, hierarchy,
@@ -59,7 +59,7 @@ class ModelTrainer:
         # Dump hyper-parameters
         # config_info = {'optim':str(self.optimizer), 'scheduler':str(self.scheduler), 'criterion':str(self.criterion)}
         with open(str(self.exp_path.joinpath('config.json')), 'w') as f:
-            json.dump(config, f, indent=2)  # indent表示缩进
+            json.dump(config, f, indent=2)
 
         if comment != None:
             self.logger.info(comment)
