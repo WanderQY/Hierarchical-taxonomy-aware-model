@@ -6,16 +6,16 @@ from torch import nn
 from class_labels import *
 def speech_seg(wave_data, duration, sr=22050, max_len=5, min_len=3, overlap=1):
     """
-    分割规则：原始音频不足 3s 进行自我拼接，按 5s 进行音频切割，剩余部分不足 3s 丢弃。
-    :param voice_path: 输入音频信号
-    :param sr: 所输入音频文件的采样率，默认为 32kHz
-    :param max_len: 最大切割长度
-    :param min_len: 最小切割长度
-    :param overlap: 重叠时间长度
-    :return: voice_seg_list, 切割后音频数据 list
+    Segmentation rule: Each record is split into segments through a sliding window at five-second intervals,
+    with a one-second overlap between consecutive segments. If the test audio is less than three seconds, a process of self-concatenation is carried out.
+    :param voice_path: Input audio signal
+    :param sr: The default sampling rate is 22.05kHz
+    :param max_len: Maximum segment length
+    :param min_len: Minimum segment length
+    :param overlap: Overlapping time length
+    :return: voice_seg_list, list
     """
 
-    # 音频分割
     voice_seg_list = []
 
     while duration < min_len:
@@ -177,7 +177,7 @@ def confusion_matrix(label_list, predict_list, species_list, save_cm=True, save_
 
 if __name__ == '__main__':
     import sys
-    sys.path.append('E:/Work/BirdCLEF2017/')
+    sys.path.append('../../BirdCLEF2017/')
     import json
     from torch.utils.data import DataLoader
     from model import Xception
@@ -190,7 +190,7 @@ if __name__ == '__main__':
     test_loader = DataLoader(test_dataset, batch_size=1, num_workers=4, drop_last=True, pin_memory=True)
 
     model = Xception(num_classes=len(hier_class_list[0]), use_attention=True)
-    checkpoint = torch.load(sys.path[-1] + 'Results/Baseline/HASound_woHier/ckpt/best.pt')
+    checkpoint = torch.load(sys.path[-1] + 'Results/Baseline/GINN_woHier/ckpt/best.pt')
     model.load_state_dict(checkpoint['model_state_dict'])
     criterion = nn.CrossEntropyLoss()
 
@@ -203,11 +203,11 @@ if __name__ == '__main__':
 
     cm, accuracy, recall, presicion = confusion_matrix(label_list, predict_list, SELECT_CLASS, save_cm=True,
                                                        save_cm_path=sys.path[
-                                                                        -1] + "Results/Baseline/HASound_woHier/total.csv")
+                                                                        -1] + "Results/Baseline/GINN_woHier/total.csv")
     """
     label_list = transfer_to_hierary(label_list.argmax(1), hier_class_list)
     predict_list = transfer_to_hierary(predict_list.argmax(1), hier_class_list)
-    # 按类别统计正确个数
+    # Count the correct number by category
     spe_acc = np.zeros(len(hier_class_list[0]))
     for i in range(len(label_list)):
         if label_list[i][0] == predict_list[i][0]:
