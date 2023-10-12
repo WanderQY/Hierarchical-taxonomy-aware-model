@@ -15,7 +15,7 @@ def get_basename_without_ext(filepath):
 def replace_path(split_datas, replace_dir):
     for k in split_datas.keys():
         for spe in split_datas[k].keys():
-            split_datas[k][spe]['path'] = split_datas[k][spe]['path'].replace('E:/Work/BirdCLEF2017/', replace_dir)
+            split_datas[k][spe]['path'] = split_datas[k][spe]['path'].replace('../../BirdCLEF/', replace_dir)
     return split_datas
 
 def parse_datasets(split_datas, add_birdsonly=True, replace_dir=False):
@@ -23,9 +23,9 @@ def parse_datasets(split_datas, add_birdsonly=True, replace_dir=False):
         for k in split_datas.keys():
             for d in split_datas[k].keys():
                 for f in split_datas[k][d].keys():
-                    split_datas[k][d][f]['ark_path'] = split_datas[k][d][f]['ark_path'].replace('E:/Work/BirdCLEF2017/',
+                    split_datas[k][d][f]['ark_path'] = split_datas[k][d][f]['ark_path'].replace('../../BirdCLEF/',
                                                                                                 replace_dir)
-                    split_datas[k][d][f]['path'] = split_datas[k][d][f]['path'].replace('E:/Work/BirdCLEF2017/',
+                    split_datas[k][d][f]['path'] = split_datas[k][d][f]['path'].replace('../../BirdCLEF/',
                                                                                         replace_dir)
     train_datas, valid_datas = split_datas['origin']['train'],  split_datas['origin']['valid']
     if add_birdsonly:
@@ -43,7 +43,7 @@ def play_wave_file(filename):
         if (sys.platform == "linux" or sys.playform == "linux2"):
             subprocess.call(["aplay", filename])
         else:
-            print("Platform not supported")
+            print ("Platform not supported")
 
 def write_wave_to_file(filename, rate, wave):
     wavfile.write(filename, rate, wave)
@@ -97,8 +97,6 @@ def copy_subset(root_dir, classes, subset_dir):
         shutil.copytree(valid_source_dir, valid_dest_dir)
         print("shutil.copytree(" + train_source_dir + "," + train_dest_dir + ")")
         shutil.copytree(train_source_dir, train_dest_dir)
-
-
 
 
 def preprocess_wave(wave):
@@ -294,7 +292,7 @@ def normalize(X):
     X = (X - mi) / (ma - mi)
     return X
 
-#################### 谱图处理 ####################
+#################### transform to spectrogram ####################
 
 def stft(x, fs, framesz, hop):
     framesamp = int(framesz*fs)
@@ -354,42 +352,42 @@ def feat_norm(feat):
 def get_feature(wave_data, sr, frame_len=1024, n_fft=None, win_step=1/4, window="hamming", preemph=0.97, n_mels=256,
                 replace_energy=True):
     """
-    获取声谱图（语谱图）特征，fbank系数
-    :param wave_data: 输入音频数据
-    :param sr: 所输入音频文件的采样率，默认为 32kHz
-    :param frame_len: 帧长，默认2048个采样点(64ms,32kHz),与窗长相同
-    :param n_fft: FFT窗口的长度，默认与窗长相同
-    :param win_step: 窗移，默认移动 2/3，2048*2/3=1365个采样点 (42.7ms,32kHz)
-    :param window: 窗类型，默认汉明窗
-    :param preemph: 预加重系数，默认0.97
-    :param n_mels: Mel滤波器组的滤波器数量，默认64
-    :param replace_energy: 是否将第0阶倒谱系数替换成帧能量的对数，默认替换
-    :return: n_fbank*3维特征，每一列为一个fbank特征向量 np.ndarray[shape=(n_fbank*3, n_frames), dtype=float32]
+    Acquire spectrogram (spectrum) features, fbank coefficients
+    :param wave_data
+    :param sr
+    :param frame_len
+    :param n_fft: 
+    :param win_step
+    :param window
+    :param preemph
+    :param n_mels
+    :param replace_energy: Whether to replace the 0th order cepstral coefficients with the logarithm of frame energy, default True
+    :return: 3D mel-scale spectrogram, np.ndarray[shape=(3, n_fbank, n_frames), dtype=float32]
     """
-    wave_data = librosa.effects.preemphasis(wave_data, coef=preemph)  # 预加重，系数0.97
-    window_len = frame_len  # 窗长2048
+    wave_data = librosa.effects.preemphasis(wave_data, coef=preemph) 
+    window_len = frame_len  # Window length 2048
     if n_fft is None:
-        fft_num = window_len  # 设置NFFT点数与窗长相等
+        fft_num = window_len  # Set the number of NFFT points equal to the window length
     else:
         fft_num = n_fft
-    hop_length = round(window_len * win_step)  # 重叠部分采样点数设置为窗长的1/3（1/3~1/2），即帧移(窗移)2/3
+    hop_length = round(window_len * win_step)  # The number of sampling points in the overlapping part is set to 1/3 of the window length (1/3 to 1/2), which is the frame shift (window shift) of 2/3
     mag_spec = np.abs(librosa.stft(wave_data, n_fft=fft_num, hop_length=hop_length,
                                     win_length=window_len, window=window))
-    # 每帧内所有采样点的幅值平方和作为能量值，np.ndarray[shape = (1，n_frames), dtype = float64]
+    # The sum of the square of the amplitude of all sampling points in each frame is taken as the energy value, np.ndarray[shape = (1，n_frames), dtype = float64]
     pow_spec = np.square(mag_spec)
     energy = np.sum(pow_spec, axis=0)
-    energy = np.where(energy == 0, np.finfo(np.float64).eps, energy)  # 避免能量值为0，防止后续取log出错(eps是取非负的最小值)
-    # 频谱矩阵：行数=n_mels=64，列数=帧数n_frames=全部采样点数/(2048*2/3)+1（向上取整）
-    # 快速傅里叶变化+汉明窗, Mel滤波器组的滤波器数量 = 64
+    energy = np.where(energy == 0, np.finfo(np.float64).eps, energy)  # Avoid energy values of 0 to prevent subsequent errors in taking the log (eps is taken as the non-negative minimum value)
+    # Spectral matrix: number of rows = n_mels = 64, number of columns = number of frames n_frames = total number of sampling points/(2048*2/3)+1 (rounded up)
+    # Fast Fourier Transform + Hamming window, number of filters in the Mel filter bank = 64
     mel_spec = librosa.feature.melspectrogram(wave_data, sr, n_fft=fft_num, hop_length=hop_length,
                                               win_length=window_len, window=window, n_mels=n_mels)
-    fbank = librosa.power_to_db(mel_spec)  # 转换为log尺度
+    fbank = librosa.power_to_db(mel_spec)  # Convert to log scale
     if replace_energy:
-        fbank[0, :] = np.log(energy)  # 将第0个系数替换成对数能量值
+        fbank[0, :] = np.log(energy)  # Replace the 0th coefficient with the logarithmic energy value
     fbank = min_max_scaler.fit_transform(fbank)
     fbank = np.pad(fbank, pad_width=((0, 0), (0, 431 - np.shape(fbank)[1])), mode="constant")
-    fbank_delta = librosa.feature.delta(fbank, width=3)  # 一阶差分
-    fbank_delta2 = librosa.feature.delta(fbank, width=3, order=2)  # 二阶差分
+    fbank_delta = librosa.feature.delta(fbank, width=3)  # first-order difference
+    fbank_delta2 = librosa.feature.delta(fbank, width=3, order=2)  # second-order difference
     #fbank = feat_norm(fbank)
     #fbank_delta = feat_norm(fbank_delta)
     #fbank_delta2 = feat_norm(fbank_delta2)
