@@ -1,0 +1,12 @@
+librosa
+scikit-learn
+numpy
+matplotlib
+kaldiio
+torch
+audiomentations
+pandas
+openpyxl
+tqdm
+datetime
+skimage
