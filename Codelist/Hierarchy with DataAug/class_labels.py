@@ -51,7 +51,7 @@ import sys
 sys.path.append('../../BirdCLEF/')
 def bird_info(select=None):
     """
-    Read birds' labels
+    Read hierarchical labels
     :param select: Read information about specific birds, e.g. select = ['Phylloscopus collybita', 'Motacilla flava']
     :return: bird_list = {'filename'：['file num', 'audio time']}
     """
