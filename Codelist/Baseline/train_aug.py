@@ -2,7 +2,7 @@
 # -*- coding: utf-8 -*-
 import random
 import sys
-sys.path.append('E:/Work/BirdCLEF2017/')
+sys.path.append('../../BirdCLEF/')
 import datetime
 import os
 from mixup import *
@@ -56,7 +56,7 @@ class ModelTrainer:
         # Dump hyper-parameters
         # config_info = {'optim':str(self.optimizer), 'scheduler':str(self.scheduler), 'criterion':str(self.criterion)}
         with open(str(self.exp_path.joinpath('config.json')), 'w') as f:
-            json.dump(config, f, indent=2)  # indent表示缩进
+            json.dump(config, f, indent=2) 
 
         if comment != None:
             self.logger.info(comment)
