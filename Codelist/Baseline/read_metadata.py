@@ -1,6 +1,6 @@
 import pandas as pd
 import sys
-sys.path.append('../../BirdCLEF2017/')
+sys.path.append('../../BirdCLEF/')
 
 xlsx_file = sys.path[-1] + 'Info/metadata.xlsx'
 
