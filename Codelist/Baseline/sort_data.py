@@ -4,7 +4,7 @@ from shutil import copyfile
 import traceback
 import xmltodict as x2d
 import sys
-sys.path.append('E:/Work/BirdCLEF2017/')
+sys.path.append('../../BirdCLEF2017/')
 
 # Specify all folders containing wav or xml files
 data_dirs = [sys.path[-1] + 'RawData/BirdCLEF2017TrainingSetPart1/TrainingSet/xml/',
@@ -50,7 +50,7 @@ def getMetaData(mfile, copy=False):
                 start = time.time()
 
             xml = open(xmlfiles[i], 'r', encoding='UTF-8').read()
-            xmldata = x2d.parse(xml)  # 将xml数据转为python中的dict字典数据
+            xmldata = x2d.parse(xml)  
 
             # reference src file path
             src_path = wavfiles[xmldata['Audio']['FileName']]
