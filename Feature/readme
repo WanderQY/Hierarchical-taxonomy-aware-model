@@ -1,0 +1,1 @@
+run ./CodeList/Baseline/audio_processing.py to create .ark files and .scp files of wave_datas and noise_datas.
