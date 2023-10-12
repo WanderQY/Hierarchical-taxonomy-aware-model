@@ -1,7 +1,7 @@
 from kaldiio import WriteHelper
 from utils import *
 import sys
-sys.path.append('E:/Work/BirdCLEF2017/')
+sys.path.append('../../BirdCLEF2017/')
 
 #################### signal to noise ####################
 def preprocess_sound_file(filename, signal_dir, noise_dir):
