@@ -9,7 +9,7 @@ from torch.utils.data import Dataset
 import sys
 import kaldiio
 from audiomentations import TanhDistortion
-sys.path.append('E:/Work/BirdCLEF2017/')
+sys.path.append('../../BirdCLEF/')
 random.seed(1234)
 
 ### time domain ###
@@ -50,7 +50,6 @@ def cut_mix(wave_data, candidate_list, p=0.5, sr=22050):
 
 class BirdsoundData(Dataset):
     """
-    鸟语识别任务的鸟类音频数据
     :param dataset: {文件名: {'ark_path': wave_data, 'label': class_name}}
     """
     def __init__(self, dataset, class_list, option='train', augment=[]):
@@ -78,7 +77,7 @@ class BirdsoundData(Dataset):
                     self.p.append(0)
         if 'noise' in self.augment:
             lines = []
-            with open('E:/Work/BirdCLEF2017/Feature/noise_datas.scp', 'r') as T:
+            with open('../../BirdCLEF/Feature/noise_datas.scp', 'r') as T:
                 lines += T.readlines()
             path_dict = {}
             for line in lines:
