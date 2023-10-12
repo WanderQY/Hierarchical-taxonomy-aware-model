@@ -140,7 +140,7 @@ class AttentionDohfNeck2(nn.Module):
         feature_matrix = self.bilinear_attention_pooling(x, attention_maps)
         return feature_matrix, attention_maps  # (B, M * C), (B, M, AH, AW)
 
-    # 正交分解
+    # CHOF
     def dohf(self, shallow_hiera, deep_hiera):
         """
         from shallow to deep: order, family, genus, class
@@ -182,7 +182,6 @@ class ClassifyHead(nn.Sequential):
             layers = [nn.Dropout(p=drop_rate)] + layers
         super().__init__(*layers)
 
-# 用于正则化
 MINI = 1e-10
 class ClassifyHeadCos(nn.Module):
     def __init__(self, in_channel, out_channel, drop_rate=0, scale=20.0):
@@ -210,8 +209,8 @@ class ClassifyHeadCos(nn.Module):
         return cls_score * self.scale
 
 ################# hierarchy architecture ####################
-class CHRF(nn.Module):
-    def __init__(self, hierarchy, use_attention=True):   # 128x938x1
+class GINN(nn.Module):
+    def __init__(self, hierarchy, use_attention=True):   # 128x938x3
         """ Constructor
         Args:
             hierarchy: {'class':100, 'family':47, 'order':18}
@@ -225,22 +224,22 @@ class CHRF(nn.Module):
 
         self.feature_embedding = nn.Sequential(
             # Entry flow
-            nn.Conv2d(3, 32, 3, 2, 0, bias=False),  # (128+2*0-3)/2(向下取整)+1, 63x468x32
+            nn.Conv2d(3, 32, 3, 2, 0, bias=False),  # 63x468x32
             nn.BatchNorm2d(32),
             nn.ReLU(inplace=True),
             nn.Conv2d(32, 64, 3, bias=False),  # 31x233x64
             nn.BatchNorm2d(64),
-            Block(64, 128, 2, 2, start_with_relu=False, grow_first=True, use_attention=self.use_attention),
-            Block(128, 256, 2, 2, start_with_relu=True, grow_first=True, use_attention=self.use_attention),
-            Block(256, 728, 2, 2, start_with_relu=True, grow_first=True, use_attention=self.use_attention),
-            Block(728, 728, 3, 1, start_with_relu=True, grow_first=True, use_attention=self.use_attention),
-            Block(728, 728, 3, 1, start_with_relu=True, grow_first=True, use_attention=self.use_attention),
-            Block(728, 728, 3, 1, start_with_relu=True, grow_first=True, use_attention=self.use_attention),
-            Block(728, 728, 3, 1, start_with_relu=True, grow_first=True, use_attention=self.use_attention),
-            Block(728, 728, 3, 1, start_with_relu=True, grow_first=True, use_attention=self.use_attention),
-            Block(728, 728, 3, 1, start_with_relu=True, grow_first=True, use_attention=self.use_attention),
-            Block(728, 728, 3, 1, start_with_relu=True, grow_first=True, use_attention=self.use_attention),
-            Block(728, 728, 3, 1, start_with_relu=True, grow_first=True, use_attention=self.use_attention),
+            Block(64, 128, 2, 2, start_with_relu=False, grow_first=True, use_attention=False),
+            Block(128, 256, 2, 2, start_with_relu=True, grow_first=True, use_attention=False),
+            Block(256, 728, 2, 2, start_with_relu=True, grow_first=True, use_attention=False),
+            Block(728, 728, 3, 1, start_with_relu=True, grow_first=True, use_attention=False),
+            Block(728, 728, 3, 1, start_with_relu=True, grow_first=True, use_attention=False),
+            Block(728, 728, 3, 1, start_with_relu=True, grow_first=True, use_attention=False),
+            Block(728, 728, 3, 1, start_with_relu=True, grow_first=True, use_attention=False),
+            Block(728, 728, 3, 1, start_with_relu=True, grow_first=True, use_attention=False),
+            Block(728, 728, 3, 1, start_with_relu=True, grow_first=True, use_attention=False),
+            Block(728, 728, 3, 1, start_with_relu=True, grow_first=True, use_attention=False),
+            Block(728, 728, 3, 1, start_with_relu=True, grow_first=True, use_attention=False),
             Block(728, 1024, 2, 2, start_with_relu=True, grow_first=False, use_attention=self.use_attention),
             )
 
@@ -331,154 +330,10 @@ class CHRF(nn.Module):
             """
         return multih_fmap, multih_fmatrixs[::-1], multih_scores[::-1], multih_att, multih_atts
 
-class HCLDNN(nn.Module):
-    def __init__(self, hierarchy, use_attention=True):   # 128x938x1
-        """ Constructor
-        Args:
-            hierarchy: {'class':100, 'family':47, 'order':18}
-            use_attention: if use attentions?
-        """
-        super(HCLDNN, self).__init__()
-        self.hierarchy = hierarchy
-        self.hier_names = list(hierarchy.keys())
-        self.hierarchical_depth = len(hierarchy)
-        self.use_attention = use_attention
-        self.entry_flow = nn.Sequential(
-            # Entry flow
-            nn.Conv2d(3, 32, 3, 2, 0, bias=False),  # (128+2*0-3)/2(向下取整)+1, 63x468x32
-            nn.BatchNorm2d(32),
-            nn.ReLU(inplace=True),
-            nn.Conv2d(32, 64, 3, bias=False),  # 31x233x64
-            nn.BatchNorm2d(64)
-        )
-        self.fc0 = nn.Linear(8000, 1024)
-        self.lstm1 = nn.LSTM(input_size=1024, hidden_size=832, num_layers=2, batch_first=True)
-        self.lstm2 = nn.LSTM(input_size=832, hidden_size=512, num_layers=1, batch_first=True)
-
-        self.middle_flow = nn.Sequential(
-            Block(64, 128, 2, 2, start_with_relu=False, grow_first=True, use_attention=self.use_attention),
-            Block(128, 256, 2, 2, start_with_relu=True, grow_first=True, use_attention=self.use_attention),
-            Block(256, 728, 2, 2, start_with_relu=True, grow_first=True, use_attention=self.use_attention),
-            Block(728, 728, 3, 1, start_with_relu=True, grow_first=True, use_attention=self.use_attention),
-            Block(728, 728, 3, 1, start_with_relu=True, grow_first=True, use_attention=self.use_attention),
-            Block(728, 728, 3, 1, start_with_relu=True, grow_first=True, use_attention=self.use_attention),
-            Block(728, 728, 3, 1, start_with_relu=True, grow_first=True, use_attention=self.use_attention),
-            Block(728, 728, 3, 1, start_with_relu=True, grow_first=True, use_attention=self.use_attention),
-            Block(728, 728, 3, 1, start_with_relu=True, grow_first=True, use_attention=self.use_attention),
-            Block(728, 728, 3, 1, start_with_relu=True, grow_first=True, use_attention=self.use_attention),
-            Block(728, 728, 3, 1, start_with_relu=True, grow_first=True, use_attention=self.use_attention),
-            Block(728, 1024, 2, 2, start_with_relu=True, grow_first=False, use_attention=self.use_attention),
-            )
-
-        self.hier_branch = {}
-        # class, (genera), family, order
-        for hier in self.hier_names:
-            hier_stage = nn.Sequential(
-                SeparableConv2d(1024, 1536, 3, 1, 1),
-                nn.BatchNorm2d(1536),
-                nn.ReLU(inplace=True),
-                SeparableConv2d(1536, 2048, 3, 1, 1),
-                nn.BatchNorm2d(2048)
-                )
-            self.add_module(hier + '_branch', hier_stage)
-            self.hier_branch[hier] = hier_stage
-
-        self.hier_neck = {}
-        for hier in self.hier_names:
-            hier_stage = AttentionDohfNeck2(M=Att_MAP[hier])
-            self.add_module(hier + '_neck', hier_stage)
-            self.hier_neck[hier] = hier_stage
-
-        self.hier_classifyhead = {}
-        for hier in self.hier_names:
-            hier_stage = ClassifyHead(in_channel=2048*Att_MAP[hier]+512, out_channel=int(self.hierarchy[hier]))
-            self.add_module(hier + '_classifyHead', hier_stage)
-            self.hier_classifyhead[hier] = hier_stage
-
-        # add attention regularization with center loss for each hierarchy
-        for hier, category_num in self.hierarchy.items():
-            self.register_buffer(
-                hier+'_feature_center',
-                torch.zeros(category_num, 2048*Att_MAP[hier], requires_grad=False))
-
-        # ------- init weights --------
-        for m in self.modules():
-            if isinstance(m, nn.Conv2d):
-                n = m.kernel_size[0] * m.kernel_size[1] * m.out_channels
-                m.weight.data.normal_(0, math.sqrt(2. / n))
-            elif isinstance(m, nn.BatchNorm2d):
-                m.weight.data.fill_(1)
-                m.bias.data.zero_()
-            elif isinstance(m, nn.Linear):
-                nn.init.normal_(m.weight, std=0.1)
-        # -----------------------------
-
-    def forward(self, x):
-        batch_size = x.size(0)
-        # entry flow
-        x = self.entry_flow(x)  # (B,64,29,115)
-
-        # lstm
-        y = x.reshape(x.size(0), -1, x.size(3))  # (B,1856,115)
-        fc_list = list()
-        for t in range(y.size(2)):
-            fc_list.append(self.fc0(y[:, :, t]))
-        y = torch.stack(tuple(fc_list), dim=2)  # (B,1024,115)
-        y = y.permute(0, 2, 1)  # (B,115,1024)
-        y, _ = self.lstm1(y)  # (B,115,832)
-        y, _ = self.lstm2(y)  # (B,115,512)
-        y = y[:, -1, :]  # (B,512), 只取最后一个时间的隐藏层特征
-        y = F.relu(y)
-
-        # middle flow
-        x = self.middle_flow(x)  # (B,1024,4,8)
-
-        # branch
-        multih_fmap = {}
-        for hier in self.hier_names:
-            hier_x = x
-            hier_x = self.hier_branch[hier](hier_x)
-            multih_fmap[hier] = hier_x   # (B,2048,2,8)
-
-        multih_att, multih_atts = {}, {}
-        multih_fmatrixs, multih_scores = [], []
-
-        shallow_feature_matrix = None
-        for hier in reversed(self.hier_names):
-            feature_matrix, attention_maps = self.hier_neck[hier](multih_fmap[hier])  # _, (B,8192)
-            # aggregate single hierarchy feature
-            # multih_fmatrixs[hier] = feature_matrix
-            shallow_feature_matrix, feature_matrix = self.hier_neck[hier].dohf(shallow_feature_matrix, feature_matrix)  # _, (B,8192)
-            multih_fmatrixs.append(feature_matrix)
-            feature_matrix = torch.cat((feature_matrix, y), 1)  # (B, 8704)
-            scores = self.hier_classifyhead[hier](feature_matrix)  # (B, num_class)
-            # aggregate dohf hierarchy feature
-            multih_scores.append(scores+1e-8)
-            """
-            # Generate Attention Map
-            if self.training:
-                # Randomly choose one of attention maps Ak
-                attention_map = []
-                for i in range(batch_size):
-                    attention_weights = torch.sqrt(abs(attention_maps[i].sum(dim=(1, 2)).detach()) + self.hier_neck[hier].EPSILON)
-                    attention_weights = F.normalize(attention_weights, p=1, dim=0)
-                    k_index = np.random.choice(self.hier_neck[hier].M, 2, p=attention_weights.cpu().numpy())
-                    attention_map.append(attention_maps[i, k_index, ...])
-                attention_map = torch.stack(attention_map)  # (B, 2, H, W) - one for cropping, the other for dropping
-            else:
-                attention_map = torch.mean(attention_maps, dim=1, keepdim=True)  # (B, 1, H, W)
-
-            multih_att[hier] = attention_map
-            multih_atts[hier] = attention_maps
-            """
-        return multih_fmap, multih_fmatrixs[::-1], multih_scores[::-1], multih_att, multih_atts
-
 
 if __name__ == '__main__':
-    model = HCLDNN(hierarchy={'class': 150, 'genus': 122, 'family': 42, 'order': 14}, use_attention=True)  # 35.36M
-    # model = CHRF(hierarchy={'class': 529, 'family': 83, 'order': 23}, use_attention=True)  # 68.74M
+    model = GINN(hierarchy={'class': 529, 'family': 83, 'order': 23}, use_attention=True) 
     para = model.parameters()
-    # 模型参数量
     total = sum([param.nelement() for param in model.parameters()])
     print("Number of parameter: %.2fM" % (total / 1e6))
     input = torch.randn(16, 3, 128, 431)
