@@ -6,7 +6,7 @@ import sys
 
 from matplotlib import pyplot as plt
 
-sys.path.append('E:/Work/BirdCLEF2017/')
+sys.path.append('../../BirdCLEF/')
 
 layer_finders = {}
 def register_layer_finder(model_type):
@@ -173,16 +173,16 @@ if __name__ == '__main__':
 
     from utils import get_feature
     from config import *
-    select_wave = ['E:/Work/BirdCLEF2017/SortedData/Song_22050\\1_LIFECLEF2015_BIRDAMAZON_XC_WAV_RN26985.wav',
-                 'E:/Work/BirdCLEF2017/SortedData/Song_22050\\3_LIFECLEF2017_BIRD_XC_WAV_RN43962.wav',
-                 'E:/Work/BirdCLEF2017/SortedData/Song_22050\\1_LIFECLEF2014_BIRDAMAZON_XC_WAV_RN12994.wav',
-                 'E:/Work/BirdCLEF2017/SortedData/Song_22050\\5_LIFECLEF2014_BIRDAMAZON_XC_WAV_RN11309.wav',
-                 'E:/Work/BirdCLEF2017/SortedData/Song_22050\\1_LIFECLEF2017_BIRD_XC_WAV_RN39357.wav']
-    select_img = ['E:/Work/BirdCLEF2017/SortedData/img\\1_LIFECLEF2015_BIRDAMAZON_XC_WAV_RN26985-0.png',
-                   'E:/Work/BirdCLEF2017/SortedData/img\\3_LIFECLEF2017_BIRD_XC_WAV_RN43962-9.png',
-                   'E:/Work/BirdCLEF2017/SortedData/img\\1_LIFECLEF2014_BIRDAMAZON_XC_WAV_RN12994-0.png',
-                   'E:/Work/BirdCLEF2017/SortedData/img\\5_LIFECLEF2014_BIRDAMAZON_XC_WAV_RN11309-0.png',
-                   'E:/Work/BirdCLEF2017/SortedData/img\\1_LIFECLEF2017_BIRD_XC_WAV_RN39357-0.png']
+    select_wave = ['../../BirdCLEF/SortedData/Song_22050\\1_LIFECLEF2015_BIRDAMAZON_XC_WAV_RN26985.wav',
+                 '../../BirdCLEF/SortedData/Song_22050\\3_LIFECLEF2017_BIRD_XC_WAV_RN43962.wav',
+                 '../../BirdCLEF/SortedData/Song_22050\\1_LIFECLEF2014_BIRDAMAZON_XC_WAV_RN12994.wav',
+                 '../../BirdCLEF/SortedData/Song_22050\\5_LIFECLEF2014_BIRDAMAZON_XC_WAV_RN11309.wav',
+                 '../../BirdCLEF/SortedData/Song_22050\\1_LIFECLEF2017_BIRD_XC_WAV_RN39357.wav']
+    select_img = ['../../BirdCLEF/SortedData/img\\1_LIFECLEF2015_BIRDAMAZON_XC_WAV_RN26985-0.png',
+                   '../../BirdCLEF/SortedData/img\\3_LIFECLEF2017_BIRD_XC_WAV_RN43962-9.png',
+                   '../../BirdCLEF/SortedData/img\\1_LIFECLEF2014_BIRDAMAZON_XC_WAV_RN12994-0.png',
+                   '../../BirdCLEF/SortedData/img\\5_LIFECLEF2014_BIRDAMAZON_XC_WAV_RN11309-0.png',
+                   '../../BirdCLEF/SortedData/img\\1_LIFECLEF2017_BIRD_XC_WAV_RN39357-0.png']
     class_index=[[135, 27, 13, 9],[9, 27, 13, 9],[1, 47, 13, 9],[17, 111, 19, 9],[15, 119, 24, 13]]
     import librosa
     wave_list = []
