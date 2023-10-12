@@ -1,7 +1,7 @@
 #!/usr/bin/env python
 # -*- coding: utf-8 -*-
 import sys
-sys.path.append('../../BirdCLEF2017/')
+sys.path.append('../../BirdCLEF/')
 import datetime
 import os
 import sys
