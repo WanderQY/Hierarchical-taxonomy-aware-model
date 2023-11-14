@@ -16,6 +16,7 @@ The study of bird populations is crucial for biodiversity research and conservat
 <div align=center>
    <img src="images/model architecture.PNG" width="700px">
 </div>
+
 # Results
 <div align=center>
    <img src="images/grad-cam.png" width="700px">
