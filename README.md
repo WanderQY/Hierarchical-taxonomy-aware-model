@@ -3,12 +3,14 @@ Hierarchical-taxonomy-aware and attentional convolutional neural networks for ac
 
 # Abstract
 The study of bird populations is crucial for biodiversity research and conservation. Deep artificial neural networks have revolutionized bird acoustic recognition, but most methods overlook hierarchical relationships among bird populations, resulting in the loss of ecological information. To address this concern, we propose the concept of Genetics-informed Neural Networks (GINN), a novel approach that incorporates hierarchical multilevel labels for each bird. This approach uses a hierarchical semantic embedding framework to capture feature information at different levels. Attention mechanisms are employed to extract and select common and distinguishing features, thereby improving classification accuracy. We also propose a path correction strategy to rectify inconsistent predictions. Experimental results on bird acoustic datasets demonstrate that GINN outperforms current methods, achieving classification accuracies of 90.450\%, 91.883\%, and 89.950\% on the Lishui-Zhejiang birdsdata (100 species), BirdCLEF2018-Small (150 species), and BirdCLEF2018-Large (500 species) datasets respectively, with the lowest hierarchical distance of a mistake across all datasets. This approach is applicable to any bird acoustic dataset, and the method presents significant advantages as the number of categories increases.
+![Local Image](images/abstract.png)
 
 # Model architecture
-![Local Image](images/local-image.jpg)
+![Local Image](images/preprocessing.png)
+![Local Image](images/model architecture.png)
 
 # Results
-
+![Local Image](images/grad-cam.png)
 
 # Get Started
 1. Install Python 3.8, PyTorch 1.11.0.
