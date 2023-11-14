@@ -241,7 +241,7 @@ if __name__ == '__main__':
     hierarchy = {'class': len(class_list[0]), 'genus': len(class_list[1]), 'family': len(class_list[2]), 'order': len(class_list[3])}
     save_path = sys.path[-1] + 'Results/'
     dataset_name = 'Attempt4_onlymainspecies'
-    model = CHRF(hierarchy=hierarchy, use_attention=True)
+    model = GINN(hierarchy=hierarchy, use_attention=True)
     criterion = HierLoss(hierarchy)
     config = {'optim': {'name': 'Adam',
                         'lr': 1e-3},
