@@ -27,7 +27,7 @@ Signal-noise separation + Spectrogram transformation + Data augmentation
 
 ## Genetics-informed Neural Network
 <div align=center>
-   <img src="images/model architecture.PNG" width="800px">
+   <img src="images/model architecture.PNG" width="1000px">
 </div>
 
 # Results and findings
@@ -69,13 +69,13 @@ Visualization of the activation achieved by four distinct network branches, each
 We provide the audio data (.wav) used to train and test our neural network classifier along with the corresponding metadata files (.xml).
 You can download the zipped files or select specific portions of the data to create your own datasets.
 
-1. [BirdCLEF2018](https://www.imageclef.org/LifeCLEF2018)
+### [BirdCLEF2018](https://www.imageclef.org/LifeCLEF2018)
 
 The dataset is the official bird sound recognition competition dataset released by LifeCLEF for 2018. Sourced primarily from
 the [Xeno-Canto Archive](xeno-canto.org), it contains songs of 1500 bird species from Central and South America, making it the
 most comprehensive bird acoustics dataset in the literature. In total, the database containes 36,446 occurrences of bird songs recorded in files of various lengths.
 
-2. Zhejiang-lishui birdsdata
+### Zhejiang-lishui birdsdata
 
 The dataset is a large collection of bird sounds gathered by the Lishui Ecological Environment Bureau from the natural environment of Lishui City, Zhejiang Province, China. 
 It comprises live recordings of 597 distinct bird species spanning 20 orders and 68 families. In total, the database contains 123,109 occurrences of bird songs recorded in files of various lengths.
