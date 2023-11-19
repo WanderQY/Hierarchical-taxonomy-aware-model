@@ -32,6 +32,34 @@ Signal-noise separation + Spectrogram transformation + Data augmentation
 
 # Results and findings
 <div align=center>
+   <img src="images/BC-L result.png" width="800px">
+</div>
+
+<div align=center>
+   <img src="images/BC-S result.png" width="800px">
+</div>
+
+<div align=center>
+   <img src="images/LS result.png" width="800px">
+</div>
+
+<div align=center>
+   <img src="images/LS1 result.png" width="800px">
+</div>
+
+* The GINN model consistently outperformed all comparison methods on the BC-S
+and BC-L datasets for each class hierarchy.
+
+* The GINN model showed minimal parameter changes (+6.44M), highlighting its applicability.
+
+* On the LS dataset, GINN exhibits superior generalization performance as the training set size decreases.
+
+* The GINN model had the lowest HDM values on all datasets, implying that the application of hierarchical
+  constraints can mitigate prediction errors, thereby enhancing the reliability of prediction.
+
+## Grad-cam
+Visualization of the activation achieved by four distinct network branches, each corresponding to a different hierarchy. 
+<div align=center>
    <img src="images/grad-cam.png" width="700px">
 </div>
 
