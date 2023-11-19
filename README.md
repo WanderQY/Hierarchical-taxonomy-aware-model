@@ -23,53 +23,103 @@ The study of bird populations is crucial for biodiversity research and conservat
    <img src="images/preprocessing.png" width="700px">
 </div>
 
-'.' signal-noise separation
-
-'.' spectrogram transformation
-
-'.' data augmentation
+Signal-noise separation + Spectrogram transformation + Data augmentation
 
 ## Genetics-informed Neural Network
 <div align=center>
-   <img src="images/model architecture.PNG" width="700px">
+   <img src="images/model architecture.PNG" width="800px">
 </div>
 
-# Results
+# Results and findings
+<div align=center>
+   <img src="images/BC-L result.png" width="800px">
+</div>
+
+<div align=center>
+   <img src="images/BC-S result.png" width="800px">
+</div>
+
+<div align=center>
+   <img src="images/LS result.png" width="800px">
+</div>
+
+<div align=center>
+   <img src="images/LS1 result.png" width="800px">
+</div>
+
+* The GINN model consistently outperformed all comparison methods on the BC-S
+and BC-L datasets for each class hierarchy.
+
+* The GINN model showed minimal parameter changes (+6.44M), highlighting its applicability.
+
+* On the LS dataset, GINN exhibits superior generalization performance as the training set size decreases.
+
+* The GINN model had the lowest HDM values on all datasets, implying that the application of hierarchical
+  constraints can mitigate prediction errors, thereby enhancing the reliability of prediction.
+
+## Grad-cam
+Visualization of the activation achieved by four distinct network branches, each corresponding to a different hierarchy. 
 <div align=center>
    <img src="images/grad-cam.png" width="700px">
 </div>
 
 # Get Started
 ## Open source data
-[Our training data is open source and can be accessed here.]([https://www.openai.com](http://gofile.me/5Erwh/OlgtdIeul)) 
-We provide the audio data (.wav) used to train and test our neural network classifier along with the corresponding matadata files (.xml).
-1. BirdCLEF
-The dataset contains songs of 22 bird species from 5 families and genera differents. The recordings were downloaded from the Xeno-canto database in .wav format and each recording was manually annotated by labelling the start and stop time for every vocalisation occurrence using Sonic Visualiser. In total, database contained 6537 occurrences of bird songs of various length from 967 file recordings. A precise description of the distribution by species and country can be found in the associated article. See below an example of an annotated file.
-3. Zhejiang-lishui birdsdata
+[Our training data is open source and can be accessed here.](http://gofile.me/5Erwh/OlgtdIeul)
+We provide the audio data (.wav) used to train and test our neural network classifier along with the corresponding metadata files (.xml).
+You can download the zipped files or select specific portions of the data to create your own datasets.
+
+1. [BirdCLEF2018](https://www.imageclef.org/LifeCLEF2018)
+
+The dataset is the official bird sound recognition competition dataset released by LifeCLEF for 2018. Sourced primarily from
+the [Xeno-Canto Archive](xeno-canto.org), it contains songs of 1500 bird species from Central and South America, making it the
+most comprehensive bird acoustics dataset in the literature. In total, the database containes 36,446 occurrences of bird songs recorded in files of various lengths.
+
+2. Zhejiang-lishui birdsdata
+
+The dataset is a large collection of bird sounds gathered by the Lishui Ecological Environment Bureau from the natural environment of Lishui City, Zhejiang Province, China. 
+It comprises live recordings of 597 distinct bird species spanning 20 orders and 68 families. In total, the database contains 123,109 occurrences of bird songs recorded in files of various lengths.
+
+You can find the species list and their information in the ./Info folder.
 
 ## Code description
 ### Libraries
 python==3.8.8
+
 torch==1.9.1+cu111
+
 torchvision==0.10.1+cu111
+
 librosa==0.8.1
+
 scikit-learn==1.0
+
 numpy==1.22.3
+
 matplotlib==3.7.1
+
 kaldiio==2.17.2
+
 audiomentations==0.27.0
+
 pandas==1.5.3
+
 openpyxl==3.0.9
+
 tqdm==4.62.3
+
 scikit-skimage==0.19.3
 
-1. Audio preprocessing. Use python audio_preprocessing.py in folder ./Codelist/. Generate processed audio files in three folders ./SortedData/Song_22050 ./SortedData/BirdsOnly ./SortedData/NoiseOnly.
+### Begin to train
+1. Audio preprocessing: Execute the Python script audio_preprocessing.py located in the ./Codelist/ folder. This will generate processed audio files in three folders: ./SortedData/Song_22050, ./SortedData/BirdsOnly, and ./SortedData/NoiseOnly.
 
-2. Partition training set, validation set, testing set. Use python split_dataset.py in folder ./Codelist/. Obtain ./SplitDatas/split_dataset1_with_hier.json
+2. Partitioning the dataset: Utilize the Python script split_dataset.py in the ./Codelist/ folder to partition the dataset into training, validation, and testing sets. The result will be saved as ./SplitDatas/split_dataset1_with_hier.json.
 
-3. Train the model. Use python train.py. 
+3. Model training: Run the Python script train.py.
 
-4. Test the model. Use python evaluation.py.
+4. Model testing: Execute the Python script evaluation.py.
+
+For more details, refer to the ./Codelist/ folder.
 
 # Project
 Our Biodiversity Intelligent Identification System is about to be launched.
