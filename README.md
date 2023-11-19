@@ -32,11 +32,11 @@ Signal-noise separation + Spectrogram transformation + Data augmentation
 
 # Results and findings
 <div align=center>
-   <img src="images/BC-L result.png" width="800px">
+   <img src="images/BC-S result.png" width="800px">
 </div>
 
 <div align=center>
-   <img src="images/BC-S result.png" width="800px">
+   <img src="images/BC-L result.png" width="800px">
 </div>
 
 <div align=center>
