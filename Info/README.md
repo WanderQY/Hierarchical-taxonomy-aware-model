@@ -1,8 +1,8 @@
-# Species imformation
+# Species information
 
 It includes species lists of the datasets and their subsets used in the experiments.
 
-Hierarchical taxonomy in the IOC WORLD BIRD LIST (v13.1) can be downloaded.
+Hierarchical taxonomy in the [IOC WORLD BIRD LIST (v13.1)](https://github.com/WanderQY/Hierarchical-taxonomy-aware-model/blob/main/Info/master_ioc_list_v13.1.xlsx) can be downloaded.
 
 ## Open source data
 [Our training data is open source and can be accessed here.](http://gofile.me/5Erwh/OlgtdIeul)
