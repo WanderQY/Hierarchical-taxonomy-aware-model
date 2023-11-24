@@ -80,7 +80,7 @@ most comprehensive bird acoustics dataset in the literature. In total, the datab
 The dataset is a large collection of bird sounds gathered by the Lishui Ecological Environment Bureau from the natural environment of Lishui City, Zhejiang Province, China. 
 It comprises live recordings of 597 distinct bird species spanning 20 orders and 68 families. In total, the database contains 123,109 occurrences of bird songs recorded in files of various lengths.
 
-You can find the species list and their information in the [./Info folder](https://github.com/WanderQY/Hierarchical-taxonomy-aware-model/tree/main/Codelist).
+You can find the species list and their information in the [./Info folder](https://github.com/WanderQY/Hierarchical-taxonomy-aware-model/tree/main/Info).
 
 ## Code description
 ### Libraries
@@ -119,7 +119,7 @@ scikit-skimage==0.19.3
 
 4. Model testing: Execute the Python script evaluation.py.
 
-For more details, refer to the ./Codelist/ folder.
+For more details, refer to the [./Codelist/ folder](https://github.com/WanderQY/Hierarchical-taxonomy-aware-model/tree/main/Codelist).
 
 # Project
 Our Biodiversity Intelligent Identification System is about to be launched.
