@@ -1,4 +1,4 @@
-## Folder Organization
+# Folder Organization
 The main folder contains scripts essential for training both the Baseline and GINN models.
 
 ## Data Pre-processing
