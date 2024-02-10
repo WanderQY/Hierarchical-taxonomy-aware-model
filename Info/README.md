@@ -19,10 +19,10 @@ The list comprises 597 species along with their scientific names, English names,
 
 We utilized "stratified sampling" to randomly select 100 bird species, denoted as "LS", for expedited model training. The species list for LS is saved in the TXT file [./Info/Lishui-Zhejiang Birdsdata/LS species list.txt](https://github.com/WanderQY/Hierarchical-taxonomy-aware-model/tree/main/Info/Lishui-Zhejiang%20Birdsdata/LS%20species%20list.txt). 
 <div align=center>
-   <img src="https://github.com/WanderQY/Hierarchical-taxonomy-aware-model/blob/main/images/stat of LS1.png" width="800px">
+   <img src="https://github.com/WanderQY/Hierarchical-taxonomy-aware-model/blob/main/images/stat of LS1.png" width="600px">
 </div>
 
-### [BirdCLEF2018]
+### BirdCLEF2018
 The datails of the metadata can be found in the Excel file [./Info/BirdCLEF2018/metadata.xlsx](https://github.com/WanderQY/Hierarchical-taxonomy-aware-model/tree/main/Info/BirdCLEF2018/metadata.xlsx). This information includes class IDs, file names, scientific names, taxonomy of species, and other details about the recordings.
 <div align=center>
    <img src="https://github.com/WanderQY/Hierarchical-taxonomy-aware-model/blob/main/images/BC metadata.png" width="800px">
@@ -30,10 +30,10 @@ The datails of the metadata can be found in the Excel file [./Info/BirdCLEF2018/
 
 We selected 150 and 500 bird species respectively to construct a small (BC-S) dataset and a large (BC-L) dataset to evaluate our model. The selected species list are saved in [./Info/BirdCLEF2018/BC-S species list.txt](https://github.com/WanderQY/Hierarchical-taxonomy-aware-model/tree/main/Info/BirdCLEF2018/BC-S%20species%20list.txt) and [./Info/BirdCLEF2018/BC-L species list.txt](https://github.com/WanderQY/Hierarchical-taxonomy-aware-model/tree/main/Info/BirdCLEF2018/BC-L%20species%20list.txt). 
 <div align=center>
-   <img src="https://github.com/WanderQY/Hierarchical-taxonomy-aware-model/blob/main/images/stat of BC-S.png" width="800px">
+   <img src="https://github.com/WanderQY/Hierarchical-taxonomy-aware-model/blob/main/images/stat of BC-S.png" width="600px">
 </div>
 <div align=center>
-   <img src="https://github.com/WanderQY/Hierarchical-taxonomy-aware-model/blob/main/images/stat of BC-L.png" width="800px">
+   <img src="https://github.com/WanderQY/Hierarchical-taxonomy-aware-model/blob/main/images/stat of BC-L.png" width="600px">
 </div>
 
 
