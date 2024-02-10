@@ -11,7 +11,10 @@ Hierarchical taxonomy in the [IOC WORLD BIRD LIST (v13.1)](https://github.com/Wa
 ## Metadata
 
 ### Lishui-Zhejiang Birdsdata
-This dataset is calculated by the orthoritists
+This dataset is collectated by the orthoritists in seven renowned scenic spots in Lishui City, Zhejiang Province, China (BSZ, YHTT, LQS,
+ BYS,JLS, JLGY,WDY),and collected nearly 8154 hours of live sound from August 23, 2022 to September 2, 2022. We
+ invited bird experts to manually annotate some records of various scenic spots (∼ 147h in total). 
+ 
 The list comprises 597 species along with their scientific names, English names, and taxonomy, which can be found in the Excel file [./Info/Lishui-Zhejiang Birdsdata/Lishui-Zhejiang Birdsdata.xlsx](https://github.com/WanderQY/Hierarchical-taxonomy-aware-model/tree/main/Info/Lishui-Zhejiang%20Birdsdata/Lishui-Zhejiang%20Birdsdata.xlsx). Additionally, the total number of files and recordings has been calculated.
 <div align=center>
    <img src="https://github.com/WanderQY/Hierarchical-taxonomy-aware-model/blob/main/images/LS metadata.png" width="800px">
