@@ -17,6 +17,7 @@ This dataset is collectated by the orthoritists in seven renowned scenic spots i
 <div align=center>
    <img src="https://github.com/WanderQY/Hierarchical-taxonomy-aware-model/blob/main/images/soundscape spe.png" width="800px">
 </div>
+
 * BSZ: Baishanzu Scenic Area, a picturesque destination renowned for its natural beauty and cultural significance, with coordinates approximately 27.5686° N latitude and 119.4095° E longitude.
 
 * YHTT: The terraced fields of Yunhe, are nestled amidst picturesque clouds, with coordinates approximately 28.0865° N latitude and 119.8449° E longitude.
