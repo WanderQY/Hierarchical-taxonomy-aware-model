@@ -90,5 +90,5 @@ An example of (.xml) format matedata.
 ```
 
 If you want to construct your own dataset, go to sort_data.py to help you handle the metadata and followed the steps in 
-[Get Started](https://github.com/WanderQY/Hierarchical-taxonomy-aware-model/tree/main/README.md](https://github.com/WanderQY/Hierarchical-taxonomy-aware-model/blob/main/README.md#get-started)https://github.com/WanderQY/Hierarchical-taxonomy-aware-model/blob/main/README.md#get-started).
+[Get Started](https://github.com/WanderQY/Hierarchical-taxonomy-aware-model/blob/main/README.md#get-started).
 
