@@ -12,12 +12,12 @@ Hierarchical taxonomy in the [IOC WORLD BIRD LIST (v13.1)](https://github.com/Wa
 
 ### Lishui-Zhejiang Birdsdata
 
-The list comprises 597 species along with their scientific names, English names, and taxonomy, which can be found in the Excel file [./Info/Lishui-Zhejiang Birdsdata/Lishui-Zhejiang Birdsdata.xlsx](https://github.com/WanderQY/Hierarchical-taxonomy-aware-model/tree/main/Info/Lishui-Zhejiang Birdsdata/Lishui-Zhejiang Birdsdata.xlsx). Additionally, the total number of files and recordings has been calculated.
+The list comprises 597 species along with their scientific names, English names, and taxonomy, which can be found in the Excel file [./Info/Lishui-Zhejiang Birdsdata/Lishui-Zhejiang Birdsdata.xlsx](https://github.com/WanderQY/Hierarchical-taxonomy-aware-model/tree/main/Info/Lishui-Zhejiang%20Birdsdata/Lishui-Zhejiang%20Birdsdata.xlsx). Additionally, the total number of files and recordings has been calculated.
 <div align=center>
    <img src="images/LS metadata.png" width="800px">
 </div>
 
-We utilized "stratified sampling" to randomly select 100 bird species, denoted as "LS", for expedited model training. The species list for LS is saved in the TXT file [./Info/Lishui-Zhejiang Birdsdata/LS species list.txt](https://github.com/WanderQY/Hierarchical-taxonomy-aware-model/tree/main/Info/Lishui-Zhejiang Birdsdata/LS species list.txt). 
+We utilized "stratified sampling" to randomly select 100 bird species, denoted as "LS", for expedited model training. The species list for LS is saved in the TXT file [./Info/Lishui-Zhejiang Birdsdata/LS species list.txt](https://github.com/WanderQY/Hierarchical-taxonomy-aware-model/tree/main/Info/Lishui-Zhejiang%20Birdsdata/LS%20species%20list.txt). 
 <div align=center>
    <img src="images/stat of LS1.png" width="800px">
 </div>
