@@ -6,7 +6,7 @@ It includes species lists of the datasets and their subsets used in the experime
    <img src="https://github.com/WanderQY/Hierarchical-taxonomy-aware-model/blob/main/images/dataset_table.png" width="700px">
 </div>
 
-Hierarchical taxonomy in the [IOC WORLD BIRD LIST (v13.1)](https://github.com/WanderQY/Hierarchical-taxonomy-aware-model/blob/main/Info/master_ioc_list_v13.1.xlsx) can be downloaded.
+Hierarchical taxonomy is search in the [americanornithology.org]([https://americanornithology.org/]).
 
 ## Metadata
 
