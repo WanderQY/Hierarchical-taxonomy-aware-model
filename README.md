@@ -88,6 +88,12 @@ It comprises live recordings of 597 distinct bird species spanning 20 orders and
 
 **You can find the species list and their information in the [./Info folder](https://github.com/WanderQY/Hierarchical-taxonomy-aware-model/tree/main/Info).**
 
+We have separated three subsets (LS, BC-S, BC-L) with hierarchical labels for training and evaluating the model. The datasets were divided into three exclusive groups: 80% for training, 10% for validation, and 10% for testing to compare the experimental results. The prepared datasets were constructed to json files in [./SplitDatas/ folder](https://github.com/WanderQY/Hierarchical-taxonomy-aware-model/tree/main/SplitDatas).
+
+'origin': The infomation of raw audio file.
+
+'birdsonly' and 'noiseonly': The two different parts of the raw audio after signal-to-noise seperation.
+
 ## Code description
 ### Libraries
 python==3.8.8
@@ -125,10 +131,18 @@ scikit-skimage==0.19.3
 
 4. Model testing: Execute the Python script evaluation.py.
 
-For more details, refer to the [./Codelist/ folder](https://github.com/WanderQY/Hierarchical-taxonomy-aware-model/tree/main/Codelist).
+**For more details, refer to the [./Codelist/ folder](https://github.com/WanderQY/Hierarchical-taxonomy-aware-model/tree/main/Codelist).**
 
 # Further discussion
-It should be noted that on-site sound analysis entails a more intricate environmental noise assessment, as a variety of factors such as different birds, insects, mammals, artificial sounds, wind, rain, and thunder can be associated with the target species in the collected recordings. Actually, the number of bird sounds collected is not very large, with non-bird sounds accounting for more than 70% of the total recordings. Compared to the two-stage model constructed using pre-determined bird / noise discrimination (a), we used an improved hierarchical relationship tree (b) (c), where an additional “s2n (signal-to-noise)” level was added before the first level to facilitate the training of a more comprehensive classification model. In this manner, non avian sounds are less likely to be recognized as flight calls, and vice versa. Due to the split of the training and testing sets at a ratio of 8: 2, we employed the extracted target bird chirps from the training set to fine-tune the trained GINN model. Evaluation results on test sets are shown in Table 9. Evaluate the effectiveness of the model from three different perspectives: recall, precision, and accuracy. Furthermore, it is feasible to enlarge the scope of the unknown species Table 9 by incorporating a “other” sibling node to each layer. This scenario will not be explored further in this article, but it demonstrates the expandability of hierarchical relationships.
+It should be noted that on-site sound analysis entails a more intricate environmental noise assessment, as a variety of factors such as different birds, insects, mammals, artificial sounds, wind, rain, and thunder can be associated with the target species in the collected recordings. Actually, the number of bird sounds collected is not very large, with non-bird sounds accounting for more than 70% of the total recordings. Compared to the two-stage model constructed using pre-determined bird / noise discrimination (a), we used an improved hierarchical relationship tree (b) (c), where an additional “s2n (signal-to-noise)” level was added before the first level to facilitate the training of a more comprehensive classification model. 
+<div align=center>
+   <img src="images/hier with noise.png" width="800px">
+</div>
+In this manner, non avian sounds are less likely to be recognized as flight calls, and vice versa. Due to the split of the training and testing sets at a ratio of 8: 2, we employed the extracted target bird chirps from the training set to fine-tune the trained GINN model. Evaluation results on test sets are shown in Table 9. Evaluate the effectiveness of the model from three different perspectives: recall, precision, and accuracy. Furthermore, it is feasible to enlarge the scope of the unknown species Table 9 by incorporating a “other” sibling node to each layer. This scenario will not be explored further in this article, but it demonstrates the expandability of hierarchical relationships.
+<div align=center>
+   <img src="images/soundscape result.png" width="800px">
+</div>
+
 
 # Project
 Our Biodiversity Intelligent Identification System is about to be launched.
