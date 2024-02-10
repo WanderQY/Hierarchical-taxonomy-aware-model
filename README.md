@@ -86,6 +86,7 @@ It comprises live recordings of 597 distinct bird species spanning 20 orders and
    <img src="images/stat of LS.png" width="800px">
 </div>
 
+
 **You can find the species list and their information in the [./Info folder](https://github.com/WanderQY/Hierarchical-taxonomy-aware-model/tree/main/Info).**
 
 We have separated three subsets (LS, BC-S, BC-L) with hierarchical labels for training and evaluating the model. The datasets were divided into three exclusive groups: 80% for training, 10% for validation, and 10% for testing to compare the experimental results. The prepared datasets were constructed to json files in [./SplitDatas/ folder](https://github.com/WanderQY/Hierarchical-taxonomy-aware-model/tree/main/SplitDatas).
