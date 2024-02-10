@@ -6,7 +6,7 @@ It includes species lists of the datasets and their subsets used in the experime
    <img src="https://github.com/WanderQY/Hierarchical-taxonomy-aware-model/blob/main/images/dataset_table.png" width="700px">
 </div>
 
-Hierarchical taxonomy is search in the [americanornithology.org]([https://americanornithology.org/]).
+Hierarchical taxonomy is search in the [americanornithology.org](https://americanornithology.org/).
 
 ## Metadata
 
@@ -88,4 +88,7 @@ An example of (.xml) format matedata.
 	<VernacularNames>Striated Earthcreeper</VernacularNames>
 </Audio>
 ```
+
+If you want to construct your own dataset, go to sort_data.py to help you handle the metadata and followed the steps in 
+[Get Started](https://github.com/WanderQY/Hierarchical-taxonomy-aware-model/tree/main/README.md).
 
