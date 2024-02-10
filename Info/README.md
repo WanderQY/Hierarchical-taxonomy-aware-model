@@ -12,9 +12,20 @@ Hierarchical taxonomy in the [IOC WORLD BIRD LIST (v13.1)](https://github.com/Wa
 
 ### Lishui-Zhejiang Birdsdata
 This dataset is collectated by the orthoritists in seven renowned scenic spots in Lishui City, Zhejiang Province, China (BSZ, YHTT, LQS,
- BYS,JLS, JLGY,WDY),and collected nearly 8154 hours of live sound from August 23, 2022 to September 2, 2022. We
- invited bird experts to manually annotate some records of various scenic spots (∼ 147h in total). 
- 
+ BYS, JLS, JLGY,WDY),and collected nearly 1538 hours of live sound from August 23, 2022 to September 2, 2022. We
+ invited bird experts to manually annotate some records of various scenic spots. 
+<div align=center>
+   <img src="https://github.com/WanderQY/Hierarchical-taxonomy-aware-model/blob/main/images/soundscape spe.png" width="600px">
+</div>
+BSZ: Baishanzu Scenic Area, a picturesque destination renowned for its natural beauty and cultural significance, with coordinates approximately 27.5686° N latitude and 119.4095° E longitude.
+YHTT: The terraced fields of Yunhe, are nestled amidst picturesque clouds, with coordinates approximately 28.0865° N latitude and 119.8449° E longitude.
+LQS: Longquan Mountain, known for its majestic peaks and tranquil forests, is situated at approximately 28.1164° N latitude and 119.1436° E longitude.
+BYS: Baiyun Mountain offers breathtaking views of rolling hills and lush greenery, located at approximately 27.2178° N latitude and 119.8977° E longitude.
+WDY: Wangdongyong features serene surroundings and is positioned at approximately 28.3228° N latitude and 120.0157° E longitude.
+JLS: Jiulong Mountain boasts stunning natural beauty, situated at around 27.8572° N latitude and 120.3512° E longitude.
+JLGY: Jiulong Park provides a tranquil escape with its scenic landscapes, positioned at around 28.3283° N latitude and 119.9185° E longitude.
+
+
 The list comprises 597 species along with their scientific names, English names, and taxonomy, which can be found in the Excel file [./Info/Lishui-Zhejiang Birdsdata/Lishui-Zhejiang Birdsdata.xlsx](https://github.com/WanderQY/Hierarchical-taxonomy-aware-model/tree/main/Info/Lishui-Zhejiang%20Birdsdata/Lishui-Zhejiang%20Birdsdata.xlsx). Additionally, the total number of files and recordings has been calculated.
 <div align=center>
    <img src="https://github.com/WanderQY/Hierarchical-taxonomy-aware-model/blob/main/images/LS metadata.png" width="800px">
