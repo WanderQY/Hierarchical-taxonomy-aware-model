@@ -74,13 +74,19 @@ You can download the zipped files or select specific portions of the data to cre
 The dataset is the official bird sound recognition competition dataset released by LifeCLEF for 2018. Sourced primarily from
 the [Xeno-Canto Archive](xeno-canto.org), it contains songs of 1500 bird species from Central and South America, making it the
 most comprehensive bird acoustics dataset in the literature. In total, the database containes 36,446 occurrences of bird songs recorded in files of various lengths.
+<div align=center>
+   <img src="images/stat of BC.png" width="800px">
+</div>
 
 ### Lishui-Zhejiang Birdsdata
 
 The dataset is a large collection of bird sounds gathered by the Lishui Ecological Environment Bureau from the natural environment of Lishui City, Zhejiang Province, China. 
 It comprises live recordings of 597 distinct bird species spanning 20 orders and 68 families. In total, the database contains 123,109 occurrences of bird songs recorded in files of various lengths.
+<div align=center>
+   <img src="images/stat of LS.png" width="800px">
+</div>
 
-You can find the species list and their information in the [./Info folder](https://github.com/WanderQY/Hierarchical-taxonomy-aware-model/tree/main/Info).
+**You can find the species list and their information in the [./Info folder](https://github.com/WanderQY/Hierarchical-taxonomy-aware-model/tree/main/Info).**
 
 ## Code description
 ### Libraries
