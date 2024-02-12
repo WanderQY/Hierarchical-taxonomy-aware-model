@@ -23,7 +23,7 @@ The study of bird populations is crucial for biodiversity research and conservat
    <img src="images/preprocessing.png" width="700px">
 </div>
 
-Signal-noise separation + Spectrogram transformation + Data augmentation
+Signal-to-noise separation + Spectrogram transformation + Data augmentation
 
 ## Genetics-informed Neural Network
 <div align=center>
