@@ -124,13 +124,21 @@ tqdm==4.62.3
 scikit-skimage==0.19.3
 
 ### Begin to train
-1. Audio preprocessing: Execute the Python script audio_preprocessing.py located in the ./Codelist/ folder. This will generate processed audio files in three folders: ./SortedData/Song_22050, ./SortedData/BirdsOnly, and ./SortedData/NoiseOnly.
+#### 1. Audio preprocessing.
+Execute the Python script
+```audio_preprocessing.py```
+in the folder `./Codelist/`. This will generate processed audio files in three folders: `./SortedData/Song_22050`, `./SortedData/BirdsOnly`, and `./SortedData/NoiseOnly`.
 
-2. Partitioning the dataset: Utilize the Python script split_dataset.py in the ./Codelist/ folder to partition the dataset into training, validation, and testing sets. The result will be saved as ./SplitDatas/split_dataset1_with_hier.json.
+#### 2. Partitioning the dataset.
+Utilize the Python script 
+```split_dataset.py```
+in the folder `./Codelist/` to partition the dataset into training, validation, and testing sets. The result will be saved as `./SplitDatas/split_dataset1_with_hier.json`.
 
-3. Model training: Run the Python script train.py.
+#### 3. Model training.
+Run the Python script ```train.py```.
 
-4. Model testing: Execute the Python script evaluation.py.
+#### 4. Model testing.
+Execute the Python script ```evaluation.py```.
 
 **For more details, refer to the [./Codelist/ folder](https://github.com/WanderQY/Hierarchical-taxonomy-aware-model/tree/main/Codelist).**
 
