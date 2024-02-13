@@ -88,6 +88,17 @@ An example of (.xml) format matedata.
 	<VernacularNames>Striated Earthcreeper</VernacularNames>
 </Audio>
 ```
+```
+<?xml version="1.0" encoding="UTF-8"?>
+<Audio>
+	<FileName>Abroscopus_albogularis-1.WAV</FileName>
+	<Order>Passeriformes</Order>
+	<Family>Muscicapidae</Family>
+	<Species(Label)>Abroscopus albogularis</Species(Label)>
+	<English name>Rufous-faced Warbler</English name>
+	<Duration(s)>28.2</Duration(s)>
+</Audio>
+```
 
 If you want to construct your own dataset, go to sort_data.py to help you handle the metadata and followed the steps in 
 [Get Started](https://github.com/WanderQY/Hierarchical-taxonomy-aware-model/blob/main/README.md#get-started).
