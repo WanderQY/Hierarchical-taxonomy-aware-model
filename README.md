@@ -47,14 +47,14 @@ Signal-to-noise separation + Spectrogram transformation + Data augmentation
    <img src="images/LS1 result.png" width="800px">
 </div>
 
-* The PRNN model consistently outperformed all comparison methods on the BC-S
+* The PPNN model consistently outperformed all comparison methods on the BC-S
 and BC-L datasets for each class hierarchy.
 
-* The PRNN model showed minimal parameter changes (+6.44M), highlighting its applicability.
+* The PPNN model showed minimal parameter changes (+6.44M), highlighting its applicability.
 
-* On the LS dataset, PRNN exhibits superior generalization performance as the training set size decreases.
+* On the LS dataset, PPNN exhibits superior generalization performance as the training set size decreases.
 
-* The PRNN model had the lowest HDM values on all datasets, implying that the application of hierarchical
+* The PPNN model had the lowest HDM values on all datasets, implying that the application of hierarchical
   constraints can mitigate prediction errors, thereby enhancing the reliability of prediction.
 
 ## Grad-cam
