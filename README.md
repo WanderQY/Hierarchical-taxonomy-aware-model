@@ -1,4 +1,4 @@
-# Hierarchical-taxonomy-aware and attentional convolutional neural networks for acoustic identification of bird species: A phylogenetic-related perspective
+# Hierarchical-taxonomy-aware and attentional convolutional neural networks for acoustic identification of bird species: A phylogenetic perspective
 Hierarchical-taxonomy-aware and attentional convolutional neural networks for acoustic identification of bird species
 
 # Authors
@@ -11,7 +11,7 @@ Qingyu Wang [1] & Yanzhi Song [1] & Yeqian Du [1] & Zhouwang Yang [1] & Peng Cui
 [3] Jiangsu Tianning Ecological Group Co., China
 
 # Abstract
-The study of bird populations is crucial for biodiversity research and conservation. Deep artificial neural networks have revolutionized bird acoustic recognition, but most methods overlook hierarchical relationships among bird populations, resulting in the loss of biological information. To address this concern, we propose the concept of Phylogenetic-related Neural Networks (PRNN), a novel approach that incorporates hierarchical multilevel labels for each bird. This approach uses a hierarchical semantic embedding framework to capture feature information at different levels. Attention mechanisms are employed to extract and select common and distinguishing features, thereby improving classification accuracy. We also propose a path correction strategy to rectify inconsistent predictions. Experimental results on bird acoustic datasets demonstrate that GINN outperforms current methods, achieving classification accuracies of 90.450\%, 91.883\%, and 89.950\% on the Lishui-Zhejiang birdsdata (100 species), BirdCLEF2018-Small (150 species), and BirdCLEF2018-Large (500 species) datasets respectively, with the lowest hierarchical distance of a mistake across all datasets. This approach is applicable to any bird acoustic dataset, and the method presents significant advantages as the number of categories increases.
+The study of bird populations is crucial for biodiversity research and conservation. Deep artificial neural networks have revolutionized bird acoustic recognition, but most methods overlook hierarchical relationships among bird populations, resulting in the loss of biological information. To address this concern, we propose the concept of Phylogenetic Perspective Neural Networks (PPNN), a novel approach that incorporates hierarchical multilevel labels for each bird. This approach uses a hierarchical semantic embedding framework to capture feature information at different levels. Attention mechanisms are employed to extract and select common and distinguishing features, thereby improving classification accuracy. We also propose a path correction strategy to rectify inconsistent predictions. Experimental results on bird acoustic datasets demonstrate that PPNN outperforms current methods, achieving classification accuracies of 90.450\%, 91.883\%, and 89.950\% on the Lishui-Zhejiang birdsdata (100 species), BirdCLEF2018-Small (150 species), and BirdCLEF2018-Large (500 species) datasets respectively, with the lowest hierarchical distance of a mistake across all datasets. This approach is applicable to any bird acoustic dataset, and the method presents significant advantages as the number of categories increases.
 
 <div align=center>
    <img src="images/abstract.png" width="700px">
@@ -25,7 +25,7 @@ The study of bird populations is crucial for biodiversity research and conservat
 
 Signal-to-noise separation + Spectrogram transformation + Data augmentation
 
-## Genetics-informed Neural Network
+## Phylogenetic Perspective Neural Network
 <div align=center>
    <img src="images/model architecture.PNG" width="1000px">
 </div>
